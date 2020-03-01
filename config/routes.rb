@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'meetings#index'
+  root to: 'homes#index'
   devise_for :users
   resources :rooms
   resources :meetings

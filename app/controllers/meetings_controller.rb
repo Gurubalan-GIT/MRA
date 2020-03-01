@@ -4,7 +4,12 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = Meeting.all
+    # @meetings = Meeting.all
+    if current_user
+      @meetings = current_user.meetings
+    else
+      redirect_to new_user_session_path, notice: 'You are not logged in.'
+    end
   end
 
   # GET /meetings/1
@@ -25,9 +30,9 @@ class MeetingsController < ApplicationController
   # POST /meetings.json
   def create
     @meeting = Meeting.new(meeting_params)
-
     respond_to do |format|
       if @meeting.save
+        @meeting.users << current_user
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
         format.json { render :show, status: :created, location: @meeting }
       else
@@ -69,6 +74,6 @@ class MeetingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meeting_params
-      params.require(:meeting).permit(:name, :date, :start_time, :end_time)
+      params.require(:meeting).permit(:name, :date, :start_time, :end_time, :room_id)
     end
 end
