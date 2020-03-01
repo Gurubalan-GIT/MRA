@@ -1,0 +1,33 @@
+h1 Listing meetings
+
+table
+  thead
+    tr
+      th Name
+      th Date
+      th Start time
+      th End time
+      th
+      th
+      th
+
+  tbody
+    - @meetings.each do |meeting|
+      tr
+        td = meeting.name
+        td = meeting.date
+        td = meeting.start_time
+        td = meeting.end_time
+        td = link_to 'Show', meeting
+        td = link_to 'Edit', edit_meeting_path(meeting)
+        td = link_to 'Destroy', meeting, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Meeting', new_meeting_path
+br
+= link_to 'Sign up', new_user_registration_path
+br
+= link_to 'Sign out', destroy_user_session_path, method: :delete
+br
+= link_to 'Log in', new_user_session_path
