@@ -68,3 +68,4 @@ gem "slim-rails"
 #generates default coffee script files
 gem 'coffee-rails'
 
+gem 'erd', '~> 0.6.4'
