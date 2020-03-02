@@ -33,6 +33,7 @@ class MeetingsController < ApplicationController
     respond_to do |format|
       if @meeting.save
         @meeting.users << current_user
+        
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
         format.json { render :show, status: :created, location: @meeting }
       else
@@ -59,7 +60,7 @@ class MeetingsController < ApplicationController
   # DELETE /meetings/1
   # DELETE /meetings/1.json
   def destroy
-    @meeting.destroy
+    current_user.meetings.delete(@meeting)
     respond_to do |format|
       format.html { redirect_to meetings_url, notice: 'Meeting was successfully destroyed.' }
       format.json { head :no_content }
@@ -74,6 +75,6 @@ class MeetingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meeting_params
-      params.require(:meeting).permit(:name, :date, :start_time, :end_time, :room_id)
+      params.require(:meeting).permit(:name, :date, :start_time, :end_time, :room_id,user_ids: [])
     end
 end
