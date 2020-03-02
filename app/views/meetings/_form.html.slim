@@ -14,10 +14,12 @@
     = f.date_select :date
   .field
     = f.label :start_time
-    = f.time_select :start_time
+    = f.time_select :start_time, {start_hour: 7, end_hour: 20, :minute_step => 30, :ampm => true}
   .field
     = f.label :end_time
-    = f.time_select :end_time
+    = f.time_select :end_time, {start_hour: 7, end_hour: 20, :minute_step => 30, :ampm => true}
+  .field
+    = f.select(:user_ids, User.all.map {|user| [user.email, user.id]}, {}, id: "event_user_ids", :multiple => true, :class => 'form-control js-selectable')
   .field
     = f.label :room
     = f.collection_select :room_id, Room.all, :id, :name
