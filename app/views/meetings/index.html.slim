@@ -29,3 +29,8 @@ br
 br
 = link_to 'Sign out', destroy_user_session_path, method: :delete
 
+= month_calendar events: @meetings_cal do |date, meetings|
+  = date
+  - meetings.each do |meeting|
+    div
+      = meeting.name
