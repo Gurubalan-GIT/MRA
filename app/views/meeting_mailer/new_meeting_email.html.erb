@@ -19,8 +19,9 @@
             <table>
               <tr>
                 <td style="text-align: center">
-                  <%= image_tag 'test.png', width: 200 %>
-                  <h1 style="font-size: 22px; ">Welcome to YourMeetingApp.com, <%= @user.email %></h1>
+                  <img src="https://miro.medium.com/max/1600/1*JO6maS2jRWMzRnOOn5j9tg.png" alt="Meeting" style="width: 200px;">
+                  <h1 style="font-size: 22px; ">Welcome to MRA!</h1>
+                  <p>Your go to meeting booking application.</p>
                 </td>
               </tr>
             </table>
@@ -29,6 +30,7 @@
               <thead>
                 <tr>
                   <th style="text-align: left; font-size: 14px;">Name:</th>
+                   <th style="text-align: left; font-size: 14px;">Room:</th>
                   <th style="text-align: left; font-size: 14px;">Starts:</th>
                   <th style="text-align: left; font-size: 14px;">Ends:</th>
                 </tr>
@@ -36,13 +38,13 @@
               <tbody>
                 <tr>
                   <td><p><%= @meeting.name %></p></td>
+                  <td><p><%= @meeting.room.name %></p></td>
                   <td><p><%= readable_time(@meeting.start_time) %></p></td>
                   <td><p><%= readable_time(@meeting.end_time) %></p></td>
                 </tr>
               </tbody>
             </table>
             <p></p>
-            <p>To login to the site, just follow this link: <%= link_to "Login", new_user_session_url %>.</p>
             <p>Thanks for joining and have a great day!</p>
           </td>
         </tr>
