@@ -36,7 +36,15 @@ class MeetingsController < ApplicationController
         @meeting.users << current_user
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
         format.json { render :show, status: :created, location: @meeting }
-        MeetingMailer.with(meeting: @meeting, user: current_user).new_meeting_email.deliver_later
+        ActionMailer::Base.smtp_settings = {
+          :address              => "smtp.gmail.com",
+          :port                 => 587,
+          :user_name            => 'gurubalan@commutatus.com',
+          :password             => 'todprnngxorcgrvk',
+          :authentication       => "plain",
+          :enable_starttls_auto => true
+        }
+        MeetingMailer.with(meeting: @meeting, users: @meeting.users).new_meeting_email.deliver_now!
       else
         format.html { render :new }
         format.json { render json: @meeting.errors, status: :unprocessable_entity }
