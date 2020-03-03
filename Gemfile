@@ -69,3 +69,5 @@ gem "slim-rails"
 gem 'coffee-rails'
 
 gem 'erd', '~> 0.6.4'
+
+gem "simple_calendar", "~> 2.0"
