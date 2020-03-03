@@ -7,6 +7,7 @@ class MeetingsController < ApplicationController
     # @meetings = Meeting.all
     if current_user
       @meetings = current_user.meetings
+      @meetings_cal = current_user.meetings.select(:id,:name,:start_time,:end_time)
     else
       redirect_to new_user_session_path, notice: 'You are not logged in.'
     end
@@ -33,9 +34,9 @@ class MeetingsController < ApplicationController
     respond_to do |format|
       if @meeting.save
         @meeting.users << current_user
-        
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
         format.json { render :show, status: :created, location: @meeting }
+        MeetingMailer.with(meeting: @meeting, user: current_user).new_meeting_email.deliver_later
       else
         format.html { render :new }
         format.json { render json: @meeting.errors, status: :unprocessable_entity }
