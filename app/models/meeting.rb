@@ -26,7 +26,7 @@ class Meeting < ApplicationRecord
     def check_time 
         if((start_time < end_time))
         else
-            errors.add(:start_time, "cannot be greater than the end time.")
+            errors.add(:start_time, "cannot be greater than or equal to the End time.")
         end
     end
 
