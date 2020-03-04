@@ -17,3 +17,12 @@
  .vc-div-child{
     width: 100%;
  }
+
+ .nested-rows{
+    display: flex;
+    flex-direction: column;
+ }
+
+ .badge{
+    margin: 5px !important;
+ }
