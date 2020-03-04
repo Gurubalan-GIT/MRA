@@ -8,7 +8,9 @@ module ApplicationHelper
     def readable_day(time)
         time.strftime("%d")
     end
-
+    def readable_email(email)
+        email.split('@')[0].capitalize
+    end
     def author_of(record)
         user_signed_in? && current_user.id == record.user_id
     end

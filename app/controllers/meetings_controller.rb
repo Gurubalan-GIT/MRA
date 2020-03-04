@@ -12,6 +12,9 @@ class MeetingsController < ApplicationController
     # @meetings = Meeting.all
     if current_user
       @meetings = current_user.meetings
+      @meetings_today = current_user.meetings.where("DATE(start_time) = ?", Date.today)
+      @meetings_upcoming = current_user.meetings.where("DATE(start_time) > ?", Date.today)
+      @meetings_past = current_user.meetings.where("DATE(start_time) < ?", Date.today)
       @meetings_cal = current_user.meetings.select(:id,:name,:start_time,:end_time)
     else
       redirect_to new_user_session_path, notice: 'You are not logged in.'
@@ -52,8 +55,7 @@ class MeetingsController < ApplicationController
       if @meeting.save
 
         @meeting.users << current_user
-        
-        format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
+        format.html { redirect_to meetings_path, notice: 'Meeting was successfully created.' }
         format.json { render :show, status: :created, location: @meeting }
         ActionMailer::Base.smtp_settings = {
           :address              => "smtp.gmail.com",
@@ -63,6 +65,7 @@ class MeetingsController < ApplicationController
           :authentication       => "plain",
           :enable_starttls_auto => true
         }
+
         MeetingMailer.with(meeting: @meeting, users: @meeting.users).new_meeting_email.deliver_now!
       else
         format.html { render :new }
@@ -99,9 +102,15 @@ class MeetingsController < ApplicationController
   def allmeetings
 
     if(current_user && current_user.admin?)
-      @meetings = Meeting.all
+      @meetings = Meeting.all.order(start_time: :desc)
     end
 
+  end
+
+  def allusers
+    if(current_user && current_user.admin?)
+      @users = User.all
+    end
   end
 
   def destroyAll
