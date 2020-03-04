@@ -9,7 +9,6 @@ table.table.table-hover
       th No. of Meetings
       th  
       th
-      th
 
   tbody
     - @rooms.each do |room|
@@ -17,9 +16,8 @@ table.table.table-hover
         td = room.name
         td = room.capacity
         td = room.meetings.count
-        td = link_to 'Show', room, class: 'btn btn-sm btn-info'
-        td = link_to 'Edit', edit_room_path(room), class: 'btn btn-sm btn-warning'
-        td = link_to 'Delete', room, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-danger'
+        td = link_to 'Edit Room', edit_room_path(room), class: 'btn btn-sm btn-warning'
+        td = link_to 'Delete Room', room, data: { confirm: 'Are you sure? This will delete the meetings associated with it also.' }, method: :delete, class: 'btn btn-sm btn-danger'
 
 br
 
