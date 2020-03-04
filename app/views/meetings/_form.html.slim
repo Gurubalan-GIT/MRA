@@ -35,8 +35,7 @@
     .col-4
     .field.col-4
       p Choose members to attend
-      = f.select(:user_ids, User.all.map {|user| [user.email, user.id]}, {}, id: "event_user_ids", :multiple => true, :class => 'form-control js-selectable')
-
+      = f.select(:user_ids, User.where.not(email: current_user.email).map {|user| [user.email, user.id]}, {}, id: "event_user_ids", :multiple => true, :class => 'form-control js-selectable')
   br
 
   .row
