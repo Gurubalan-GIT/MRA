@@ -1,15 +1,22 @@
 = form_for @room do |f|
   - if @room.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@room.errors.count, "error")} prohibited this room from being saved:"
-      ul
-        - @room.errors.full_messages.each do |message|
-          li = message
+      - @room.errors.full_messages.each do |message|
+        .alert.alert-danger 
+          = message
+  .row
+    .col-4
+    .field.col-4
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
+  br
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :capacity
-    = f.number_field :capacity
-  .actions = f.submit
+  .row
+    .col-4
+    .field.col-4
+      = f.label :capacity
+      = f.number_field :capacity, class: 'form-control'
+  br
+  .row
+    .col-4
+    .actions.col-4 = f.submit class: 'btn btn-info'

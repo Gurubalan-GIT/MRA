@@ -1,5 +1,5 @@
 br
-h3 Your meetings
+h3 All meetings
 br
 table.table.table-hover
   thead.thead-dark
@@ -9,7 +9,7 @@ table.table.table-hover
       th Start time
       th End time
       th Room name
-      th 
+      th
       th
       th
 
@@ -20,14 +20,11 @@ table.table.table-hover
         td = readable_date(meeting.date)
         td = readable_time(meeting.start_time)
         td = readable_time(meeting.end_time)
-        td = meeting.room.name 
+        td = meeting.room.name
         td = link_to 'Show', meeting, class: 'btn btn-sm btn-info'
         td = link_to 'Edit', edit_meeting_path(meeting), class: 'btn btn-sm btn-primary'
-        td = link_to 'Opt Out', meeting, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-danger'
+        td = link_to 'Destroy', destroyAll_meeting_path(meeting) , data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 
 br
 
 = link_to 'New Meeting', new_meeting_path, class: 'btn btn-info'
-
-
-
