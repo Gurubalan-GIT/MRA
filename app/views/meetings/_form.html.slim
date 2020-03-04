@@ -11,25 +11,34 @@
         = f.label :name
         = f.text_field :name, class: 'form-control'
   br
+
   .row
-    .col-4
-    .field.col-4
-      = f.label :start_time
-      =  datetime_local_field(:meeting, :start_time, class: 'form-control') 
+    .col-2
+    .field.col-10
+      p = f.label :start_time
+      span.datetime
+        = f.datetime_select(:start_time, {start_hour: 7,end_hour: 20,:minute_step => 30, :ampm => true} , class: 'form-control'  ) 
 
   br
+
+
   .row
-    .col-4
-    .field.col-4
-      = f.label :end_time
-      =  datetime_local_field(:meeting, :end_time, class: 'form-control')   
+    .col-2
+    .field.col-10
+      p = f.label :end_time
+      span.datetime
+        = f.datetime_select(:end_time, {start_hour: 7,end_hour: 20,:minute_step => 30, :ampm => true} , class: 'form-control'  ) 
+
   br
+
   .row
     .col-4
     .field.col-4
       p Choose members to attend
       = f.select(:user_ids, User.all.map {|user| [user.email, user.id]}, {}, id: "event_user_ids", :multiple => true, :class => 'form-control js-selectable')
+
   br
+
   .row
     .col-4
     .field.col-4
