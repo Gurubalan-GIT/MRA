@@ -1,17 +1,23 @@
+br
+br
+.shadow-lg.p-3.mb-5.bg-white.rounded 
+  p
+    strong Name: 
+    = @meeting.name
+  p
+    strong Date: 
+    = readable_date(@meeting.date)
+  p
+    strong Start time: 
+    = readable_time(@meeting.start_time)
+  p
+    strong End time: 
+    = readable_time(@meeting.end_time)
+  
+  p
+    strong Room name: 
+    = @meeting.room.name
 
-p
-  strong Name:
-  = @meeting.name
-p
-  strong Date:
-  = @meeting.date
-p
-  strong Start time:
-  = @meeting.start_time
-p
-  strong End time:
-  = @meeting.end_time
-
-=> link_to 'Edit', edit_meeting_path(@meeting)
-'|
-=< link_to 'Back', meetings_path
+  => link_to 'Edit', edit_meeting_path(@meeting), class: 'btn btn-sm btn-info'
+  
+  =< link_to 'Back', meetings_path, class: 'btn btn-sm btn-warning'

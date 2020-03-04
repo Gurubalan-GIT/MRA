@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'homes#index'
+  get '/meetings/calendar' => 'meetings#calendar', as:'calendar'
   devise_for :users
   resources :rooms
   resources :meetings

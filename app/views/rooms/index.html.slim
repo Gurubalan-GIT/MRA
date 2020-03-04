@@ -1,11 +1,13 @@
-h1 Listing rooms
-
-table
-  thead
+br
+h4 Rooms List
+br
+table.table.table-hover
+  thead.thead-dark
     tr
       th Name
       th Capacity
-      th
+      th No. of Meetings
+      th  
       th
       th
 
@@ -14,10 +16,11 @@ table
       tr
         td = room.name
         td = room.capacity
-        td = link_to 'Show', room
-        td = link_to 'Edit', edit_room_path(room)
-        td = link_to 'Destroy', room, data: { confirm: 'Are you sure?' }, method: :delete
+        td = room.meetings.count
+        td = link_to 'Show', room, class: 'btn btn-sm btn-info'
+        td = link_to 'Edit', edit_room_path(room), class: 'btn btn-sm btn-warning'
+        td = link_to 'Delete', room, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-danger'
 
 br
 
-= link_to 'New Room', new_room_path
+= link_to 'New Room', new_room_path, class: 'btn btn-sm btn-primary'

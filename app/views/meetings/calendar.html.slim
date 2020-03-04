@@ -1,0 +1,8 @@
+br 
+br
+= month_calendar events: @meetings_cal do |date, meetings|
+  = readable_date(date)
+  - meetings.each do |meeting|
+    div
+      = link_to "#{meeting.name}", meeting, class: 'badge badge-pill badge-success'
+    

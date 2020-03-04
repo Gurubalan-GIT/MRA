@@ -1,12 +1,14 @@
-h1 Listing meetings
-
-table
-  thead
+br
+h3 Your meetings
+br
+table.table.table-hover
+  thead.thead-dark
     tr
       th Name
       th Date
       th Start time
       th End time
+      th Room name
       th
       th
       th
@@ -15,22 +17,17 @@ table
     - @meetings.each do |meeting|
       tr
         td = meeting.name
-        td = meeting.date
-        td = meeting.start_time
-        td = meeting.end_time
-        td = link_to 'Show', meeting
-        td = link_to 'Edit', edit_meeting_path(meeting)
-        td = link_to 'Destroy', meeting, data: { confirm: 'Are you sure?' }, method: :delete
+        td = readable_date(meeting.date)
+        td = readable_time(meeting.start_time)
+        td = readable_time(meeting.end_time)
+        td = meeting.room.name
+        td = link_to 'Show', meeting, class: 'btn btn-sm btn-info'
+        td = link_to 'Edit', edit_meeting_path(meeting), class: 'btn btn-sm btn-primary'
+        td = link_to 'Destroy', meeting, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-danger'
 
 br
 
-= link_to 'New Meeting', new_meeting_path
+= link_to 'New Meeting', new_meeting_path, class: 'btn btn-info'
 
-br
-= link_to 'Sign out', destroy_user_session_path, method: :delete
 
-= month_calendar events: @meetings_cal do |date, meetings|
-  = date
-  - meetings.each do |meeting|
-    div
-      = meeting.name
+

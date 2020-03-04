@@ -1,5 +1,12 @@
-h1 New meeting
+.vc-div-parent
+    .vc-div-child.shadow-lg.p-3.mb-5.bg-white.rounded 
+        h4.text-center New meeting
 
-== render 'form'
+        == render 'form'
 
-= link_to 'Back', meetings_path
+        br
+
+        .row
+            .col-4
+            .col-4
+                = link_to 'Back', meetings_path , class: 'btn btn-danger'
