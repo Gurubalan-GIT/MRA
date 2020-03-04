@@ -14,20 +14,15 @@
   .row
     .col-4
     .field.col-4
-      = f.label :date
-      = date_field(:meeting, :date, class: 'form-control' )
-  br
-  .row
-    .col-4
-    .field.col-4
       = f.label :start_time
-      = f.time_select :start_time, {start_hour: 7, end_hour: 20, :minute_step => 30, :ampm => true}, class: 'form-control' 
+      =  datetime_local_field(:meeting, :start_time, class: 'form-control') 
+
   br
   .row
     .col-4
     .field.col-4
       = f.label :end_time
-      = f.time_select :end_time, {start_hour: 7, end_hour: 20, :minute_step => 30, :ampm => true}, class: 'form-control' 
+      =  datetime_local_field(:meeting, :end_time, class: 'form-control')   
   br
   .row
     .col-4

@@ -1,33 +1,101 @@
 br
-h3 Your meetings
 br
-table.table.table-hover
-  thead.thead-dark
-    tr
-      th Name
-      th Date
-      th Start time
-      th End time
-      th Room name
-      th 
-      th
-      th
+h4 Your meetings
+br
+nav
+  #nav-tab.nav.nav-tabs role="tablist" 
+    a#nav-home-tab.nav-item.nav-link aria-controls="nav-home" aria-selected="true" data-toggle="tab" href="#nav-home" role="tab"  Past
+    a#nav-profile-tab.nav-item.nav-link.active aria-controls="nav-profile" aria-selected="false" data-toggle="tab" href="#nav-profile" role="tab"  Today
+    a#nav-contact-tab.nav-item.nav-link aria-controls="nav-contact" aria-selected="false" data-toggle="tab" href="#nav-contact" role="tab"  Upcoming
+#nav-tabContent.tab-content
+  #nav-home.tab-pane.fade.show.active aria-labelledby="nav-home-tab" role="tabpanel"  
+    br
+    table.table.table-hover
+      thead.thead-dark
+        tr
+          th Name
+          th Date
+          th Start time
+          th End time
+          th Room name
+          th Members
+          th
 
-  tbody
-    - @meetings.each do |meeting|
-      tr
-        td = meeting.name
-        td = readable_date(meeting.date)
-        td = readable_time(meeting.start_time)
-        td = readable_time(meeting.end_time)
-        td = meeting.room.name 
-        td = link_to 'Show', meeting, class: 'btn btn-sm btn-info'
-        td = link_to 'Edit', edit_meeting_path(meeting), class: 'btn btn-sm btn-primary'
-        td = link_to 'Opt Out', meeting, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-danger'
+      tbody
+        - @meetings_past.each do |meeting|
+          tr
+            td = meeting.name
+            td = readable_date(meeting.start_time)
+            td = readable_time(meeting.start_time)
+            td = readable_time(meeting.end_time)
+            td = meeting.room.name
+            td.nested-rows
+              - meeting.users.each do |user|
+                .badge.badge-pill.badge-success
+                     = readable_email(user.email)
+
+            td = link_to 'Opt Out', meeting, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-danger'
+
+
+  #nav-profile.tab-pane.fade aria-labelledby="nav-profile-tab" role="tabpanel"  
+
+    br
+    table.table.table-hover
+      thead.thead-dark
+        tr
+          th Name
+          th Date
+          th Start time
+          th End time
+          th Room name
+          th Members
+
+      tbody
+        - @meetings_today.each do |meeting|
+          tr
+            td = meeting.name
+            td = readable_date(meeting.start_time)
+            td = readable_time(meeting.start_time)
+            td = readable_time(meeting.end_time)
+            td = meeting.room.name 
+            td.nested-rows
+              - meeting.users.each do |user|
+                .badge.badge-pill.badge-success
+                     = readable_email(user.email)
+            td = link_to 'Opt Out', meeting, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-danger'
+
+  #nav-contact.tab-pane.fade aria-labelledby="nav-contact-tab" role="tabpanel"  
+
+    br
+    table.table.table-hover
+      thead.thead-dark
+        tr
+          th Name
+          th Date
+          th Start time
+          th End time
+          th Room name
+          th Members
+          th
+
+      tbody
+        - @meetings_upcoming.each do |meeting|
+          tr
+            td = meeting.name
+            td = readable_date(meeting.start_time)
+            td = readable_time(meeting.start_time)
+            td = readable_time(meeting.end_time)
+            td = meeting.room.name 
+            td.nested-rows
+              - meeting.users.each do |user|
+                .badge.badge-pill.badge-success
+                     = readable_email(user.email)
+            td = link_to 'Opt Out', meeting, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-danger'
+
+
 
 br
 
 = link_to 'New Meeting', new_meeting_path, class: 'btn btn-info'
-
 
 

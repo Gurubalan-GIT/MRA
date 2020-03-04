@@ -1,0 +1,27 @@
+br
+h3 All meetings
+br
+table.table.table-hover
+  thead.thead-dark
+    tr
+      th Name
+      th Meetings
+ 
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.email
+        td.nested-rows
+            - user.meetings.each do |meeting|
+                .badge.badge-pill.badge-success
+                     = meeting.name
+                     
+   
+        / td = link_to 'Edit account', edit_user_registration_path(user) , class: 'btn btn-sm btn-primary'
+        / td = button_to "Delete account", registration_path(user), data: { confirm: "Are you sure?" }, method: :delete , class: 'btn btn-sm btn-danger'
+
+
+br
+
+= link_to 'New Meeting', new_meeting_path, class: 'btn btn-info'
