@@ -1,6 +1,6 @@
 class MeetingsController < ApplicationController
   helper :application
-  before_action :set_meeting, only: [:show, :edit, :update, :destroy]
+  before_action :set_meeting, only: [:show, :edit, :update, :destroy, :destroyAll]
   before_action :authenticate_user!
   before_action do 
     redirect_to new_user_session_path unless current_user
@@ -50,7 +50,9 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.new(meeting_params)
     respond_to do |format|
       if @meeting.save
+
         @meeting.users << current_user
+        
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
         format.json { render :show, status: :created, location: @meeting }
         ActionMailer::Base.smtp_settings = {
@@ -91,6 +93,27 @@ class MeetingsController < ApplicationController
       format.html { redirect_to meetings_url, notice: 'Meeting was successfully destroyed.' }
       format.json { head :no_content }
     end
+
+  end
+
+  def allmeetings
+
+    if(current_user && current_user.admin?)
+      @meetings = Meeting.all
+    end
+
+  end
+
+  def destroyAll
+
+    @meeting.delete
+
+    respond_to do |format|
+      format.html { redirect_to all_meetings_url, notice: 'Meeting was successfully deleted.' }
+      format.json { head :no_content }
+
+    end
+
   end
 
   private
@@ -103,5 +126,5 @@ class MeetingsController < ApplicationController
     def meeting_params
       params.require(:meeting).permit(:name, :date, :start_time, :end_time, :room_id,user_ids: [])
     end
-    
+
 end
