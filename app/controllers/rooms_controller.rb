@@ -1,5 +1,9 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action do 
+    redirect_to new_user_session_path unless current_user && current_user.admin? 
+  end 
 
   # GET /rooms
   # GET /rooms.json

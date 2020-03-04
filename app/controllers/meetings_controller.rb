@@ -1,5 +1,10 @@
 class MeetingsController < ApplicationController
+  helper :application
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action do 
+    redirect_to new_user_session_path unless current_user
+  end
 
   # GET /meetings
   # GET /meetings.json
@@ -11,6 +16,18 @@ class MeetingsController < ApplicationController
     else
       redirect_to new_user_session_path, notice: 'You are not logged in.'
     end
+
+  end
+
+  def calendar 
+
+    if current_user
+      @meetings = current_user.meetings
+      @meetings_cal = current_user.meetings.select(:id,:name,:start_time,:end_time)
+    else
+      redirect_to new_user_session_path, notice: 'You are not logged in.'
+    end
+
   end
 
   # GET /meetings/1
@@ -86,4 +103,5 @@ class MeetingsController < ApplicationController
     def meeting_params
       params.require(:meeting).permit(:name, :date, :start_time, :end_time, :room_id,user_ids: [])
     end
+    
 end
