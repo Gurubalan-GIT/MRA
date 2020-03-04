@@ -19,11 +19,44 @@
 
           <% if current_user %>
           <li class="nav-item">
-            <a class="nav-link"> <%= current_user.email %> </a>
+            <a class="nav-link">Signed in as <%= current_user.email %> </a>
           </li>
+          <% else %>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Guest</a>
+            </li>
           <% end %>
-          
+
+           <% if current_user && current_user.admin? %>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Admin</a>
+              </li>
+           <% end %>
+        
         </ul>
+
+        <ul class="navbar-nav ml-auto"> 
+
+          <% if current_user %>
+
+          <li class="nav-item">
+          <%= link_to 'Calendar View', calendar_path, class: 'nav-link' %> 
+          </li>   
+
+
+          <li class="nav-item">
+          <%= link_to 'Edit Account', edit_user_registration_path , class: 'nav-link' %> 
+          </li>
+
+          <li class="nav-item">
+            <%= link_to 'Sign out', destroy_user_session_path, method: :delete , class: 'nav-link' %> 
+          </li>
+
+
+          <% end %>
+        
+        </ul>
+
       </div>
     </nav>
 
