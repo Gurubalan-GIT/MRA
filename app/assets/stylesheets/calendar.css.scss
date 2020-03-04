@@ -1,0 +1,33 @@
+/*
+ * Created Date: Wednesday March 4th 2020
+ * Author: Gurubalan Harikrishnan
+ * Email-ID: gurubalan.work@gmail.com
+ * -----
+ * Copyright (c) 2020 Gurubalan Harikrishnan
+ */
+
+ .simple-calendar {
+    .day {}
+  
+    .wday-0 {}
+    .wday-1 {}
+    .wday-2 {}
+    .wday-3 {}
+    .wday-4 {}
+    .wday-5 {}
+    .wday-6 {}
+  
+    .today {
+        background-color: #f4eeff !important;
+    }
+    .past {}
+    .future {}
+  
+    .start-date {}
+  
+    .prev-month {}
+    .next-month { }
+    .current-month {}
+  
+    .has-events {}
+  }
