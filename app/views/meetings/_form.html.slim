@@ -24,7 +24,10 @@
       = f.label :end_time
       =  datetime_local_field(:meeting, :end_time, class: 'form-control')   
   br
-      br
+  .row
+    .col-4
+    .field.col-4
+      p Choose members to attend
       = f.select(:user_ids, User.all.map {|user| [user.email, user.id]}, {}, id: "event_user_ids", :multiple => true, :class => 'form-control js-selectable')
   br
   .row
