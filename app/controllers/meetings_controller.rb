@@ -103,26 +103,25 @@ class MeetingsController < ApplicationController
 
     if(current_user && current_user.admin?)
       @meetings = Meeting.all.order(start_time: :desc)
+    else
+      redirect_to meetings_path, alert: 'You do not have access.'
     end
-
   end
 
   def allusers
     if(current_user && current_user.admin?)
       @users = User.all
+    else 
+      redirect_to meetings_path, alert: 'You do not have access.'
     end
   end
 
   def destroyAll
-
     @meeting.delete
-
     respond_to do |format|
       format.html { redirect_to all_meetings_url, notice: 'Meeting was successfully deleted.' }
       format.json { head :no_content }
-
     end
-
   end
 
   private
