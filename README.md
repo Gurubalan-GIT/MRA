@@ -54,19 +54,31 @@ Usually most people ignore the use of helpers in rails. Fill them up with functi
 Make sure to add this to your controller for the view you're trying to call it -
 `helper :application`
 
+## Creating Admins
+On localhost get into the console by -
+- `rails console` and now assign a user you want to make it admin. An example active record query would be : 
+- ```
+  @user = User.where(email: "youremailinDB")
+  @user.admin = true
+  @user.save
+  ```
+- This will make that user an admin now. Refresh the page and it'll be redirected to the `rooms_path`
+- For **Heroku** : SSH into the server or just run -
+  `heroku run rails console`, this will run the console in the heroku remote server and execute the exact same steps above.
+
 ## Problems faced 
 There were plenty which came along the process but I'll highlight the most important ones. 
 
-- *Heroku deployment* : For this you need to do a couple of things because you are planning to run 
+- **Heroku deployment** : For this you need to do a couple of things because you are planning to run 
 a SMTP server and pass credentials as well. 
 - Create the an application on Heroku and go over to settings and click on *reveal config vars*, 
 and add a config : Value as - `RAILS_MASTER_KEY` and the key as the contents of your `master.key` 
 lock file generated while creating your rails application.
 - After that add this line in your `development.rb` and `production.rb` files - 
 `config.require_master_key = true`.
-- *Select2* : This might work fine in localhost:3000 but might have UI rendering issues on production 
+- **Select2** : This might work fine in localhost:3000 but might have UI rendering issues on production 
 servers like `Heroku`. For this simply go to your `application.css` and add `*= require select2` and your                     `application.js` and add `//= require select2`.
-- *Webpacker* : Make sure you install some plugins through `yarn` or something which supports 
+- **Webpacker** : Make sure you install some plugins through `yarn` or something which supports 
 webpacker. ( The new assets pipeline from Rails 6.0 ).
 
 ## Useful links and references 
