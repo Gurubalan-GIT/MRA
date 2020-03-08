@@ -1,5 +1,6 @@
 # Meeting Room Application
 This is a meeting room booking application which is done with `Ruby on rails` and `Bootstrap 4.4.` 
+Hosted on Heroku - [MRA-Commutatus](https://mra-commutatus.herokuapp.com/).
 
 ## Introduction
 
@@ -20,6 +21,7 @@ To run the application you need to do a few things :
 - Change your `development.rb` file credentials to match your account details. 
 ( The email which you want to send invites from. )
 - If you're going to use it in production do the same changes in `production.rb` file as well. 
+- [Development.rb](config/environments/development.rb) & [Production.rb](config/environments/production.rb)
 
 ## Schema Structure 
 
@@ -60,6 +62,17 @@ lock file generated while creating your rails application.
 servers like `Heroku`. For this simply go to your `application.css` and add `*= require select2` and your                     `application.js` and add `//= require select2`.
 - *Webpacker* : Make sure you install some plugins through `yarn` or something which supports 
 webpacker. ( The new assets pipeline from Rails 6.0 ).
+
+## Useful links and references 
+
+- [Official Documentation](https://guides.rubyonrails.org/getting_started.html)
+- [Select2](https://medium.com/@psmy/rails-6-stimulus-and-select2-de4a4d2b59e4)
+- [Action Mailers with SMTP](https://dev.to/morinoko/sending-emails-in-rails-with-action-mailer-and-gmail-35g4)
+- [Chosen](https://harvesthq.github.io/chosen/)
+- [Slim](http://slim-lang.com/)
+- [https://coffeescript.org/](https://coffeescript.org/)
+- [Devise Auth](https://github.com/heartcombo/devise)
+
 
 _Thank you, for stopping by_          
  
