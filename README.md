@@ -13,6 +13,7 @@ The key features about this application are -
 - The meetings of the particular user are sorted datewise and also split into today's, upcoming ones and past meetings. 
 - On further selecting the users / members for a particular meeting ( depending on room capacity set by the admin ) all the members get an invitation email sent to them through the `SMTP` server set up with rails on the server. 
 - The multiple selection of users is handled by `Select2` which is a Jquery plugin. 
+- A UI based calender which actually shows all the reccurring events for a particular user. 
 
 ## Instructions
 To run the application you need to do a few things : 
@@ -47,6 +48,11 @@ be a join table for users & meetings. ( has_many_and_belongs_to ) and then intur
 to that room. 
 - But the room can directly access it's users. Hence it is just not bi-directional, because logically 
 we don't want it to be.
+
+## Making right use of Helpers
+Usually most people ignore the use of helpers in rails. Fill them up with functions which you always use. In your `Application_helper.erb` add functions such as parsing Time and date formats to be readable ones. Call these from your views so these get called on runtime. 
+Make sure to add this to your controller for the view you're trying to call it -
+`helper :application`
 
 ## Problems faced 
 There were plenty which came along the process but I'll highlight the most important ones. 
