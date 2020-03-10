@@ -13,7 +13,7 @@ The key features about this application are -
 - The meetings of the particular user are sorted datewise and also split into today's, upcoming ones and past meetings. 
 - On further selecting the users / members for a particular meeting ( depending on room capacity set by the admin ) all the members get an invitation email sent to them through the `SMTP` server set up with rails on the server. 
 - The multiple selection of users is handled by `Select2` which is a Jquery plugin. 
-- A UI based calender which actually shows all the reccurring events for a particular user. 
+- A UI based calender which actually shows all the reccurring events for a particular user. This is through using the `Simple Calendar` Gem and customising it by ourselves.
 
 ## Instructions
 To run the application you need to do a few things : 
@@ -102,7 +102,7 @@ webpacker. ( The new assets pipeline from Rails 6.0 ).
 - [Slim](http://slim-lang.com/)
 - [Coffee Script](https://coffeescript.org/)
 - [Devise Auth](https://github.com/heartcombo/devise)
-
+- [Simple Calendar](https://github.com/excid3/simple_calendar)
 
 _Thank you, for stopping by_          
  
