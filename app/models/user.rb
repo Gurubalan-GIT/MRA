@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  devise :timeoutable, :timeout_in => 2.minutes
   validates :email, :presence => true
   validate :email_validation
   has_and_belongs_to_many :meetings
