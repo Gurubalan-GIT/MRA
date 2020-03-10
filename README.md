@@ -77,6 +77,7 @@ On localhost get into the console by -
 <br>
 How the mail get's sent to the members:
 <img src="/public/git-images/7.png" height="300"> 
+
 ## Problems faced 
 There were plenty which came along the process but I'll highlight the most important ones. 
 
