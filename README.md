@@ -100,7 +100,7 @@ webpacker. ( The new assets pipeline from Rails 6.0 ).
 - [Action Mailers with SMTP](https://dev.to/morinoko/sending-emails-in-rails-with-action-mailer-and-gmail-35g4)
 - [Chosen](https://harvesthq.github.io/chosen/)
 - [Slim](http://slim-lang.com/)
-- [https://coffeescript.org/](https://coffeescript.org/)
+- [Coffee Script](https://coffeescript.org/)
 - [Devise Auth](https://github.com/heartcombo/devise)
 
 
