@@ -83,7 +83,7 @@ There were plenty which came along the process but I'll highlight the most impor
 
 - **Heroku deployment** : For this you need to do a couple of things because you are planning to run 
 a SMTP server and pass credentials as well. 
-- Create the an application on Heroku and go over to settings and click on *reveal config vars*, 
+- Create an application on Heroku and go over to settings and click on *reveal config vars*, 
 and add a config : Value as - `RAILS_MASTER_KEY` and the key as the contents of your `master.key` 
 lock file generated while creating your rails application.
 - After that add this line in your `development.rb` and `production.rb` files - 
