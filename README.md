@@ -66,6 +66,17 @@ On localhost get into the console by -
 - For **Heroku** : SSH into the server or just run -
   `heroku run rails console`, this will run the console in the heroku remote server and execute the exact same steps above.
 
+## Screenshots
+
+<img src="/public/git-images/1.png" height="300"> 
+<img src="/public/git-images/2.png" height="300"> 
+<img src="/public/git-images/3.png" height="300"> 
+<img src="/public/git-images/4.png" height="300">
+<img src="/public/git-images/5.png" height="300"> 
+<img src="/public/git-images/6.png" height="300"> 
+<br>
+How the mail get's sent to the members:
+<img src="/public/git-images/7.png" height="300"> 
 ## Problems faced 
 There were plenty which came along the process but I'll highlight the most important ones. 
 
