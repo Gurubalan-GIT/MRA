@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2020_03_04_083603) do
   create_table "meetings_users", id: false, force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "meeting_id", null: false
+    t.index ["meeting_id", "user_id"], name: "index_meetings_users_on_meeting_id_and_user_id"
+    t.index ["user_id", "meeting_id"], name: "index_meetings_users_on_user_id_and_meeting_id"
   end
 
   create_table "rooms", force: :cascade do |t|
